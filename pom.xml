@@ -14,7 +14,7 @@
     <name>sdi-project</name>
     <description>sdi-project</description>
     <properties>
-        <java.version>22</java.version>
+        <java.version>16</java.version>
     </properties>
     <dependencies>
         <dependency>
