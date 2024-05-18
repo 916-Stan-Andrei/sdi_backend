@@ -3,6 +3,7 @@ package com.example.sdiproject.api;
 
 import com.example.sdiproject.DTOs.TicketRequestDTO;
 import com.example.sdiproject.DTOs.TicketResponseDTO;
+import com.example.sdiproject.DTOs.TicketUpdateRequestDTO;
 import com.example.sdiproject.entities.Ticket;
 import com.example.sdiproject.services.AttendeeService;
 import com.example.sdiproject.services.TicketService;
@@ -58,7 +59,7 @@ public class TicketController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> updateTicket(@RequestBody Ticket ticket) {
+    public ResponseEntity<String> updateTicket(@RequestBody TicketUpdateRequestDTO ticket) {
         try {
             ticketService.updateTicket(ticket);
             return ResponseEntity.status(HttpStatus.OK).body("Ticket updated successfully");

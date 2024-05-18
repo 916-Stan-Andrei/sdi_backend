@@ -29,7 +29,8 @@ public class TicketResponseDTOMapper implements Function<Ticket, TicketResponseD
                 ticket.getEventDate(),
                 ticket.getType(),
                 ticket.getTicketPriorityLevel(),
-                attendeeResponseDTOS
+                attendeeResponseDTOS,
+                ticket.getUser().getId()
         );
     }
 }

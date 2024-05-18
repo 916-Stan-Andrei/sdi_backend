@@ -2,6 +2,7 @@ package com.example.sdiproject.services;
 
 import com.example.sdiproject.DTOs.TicketRequestDTO;
 import com.example.sdiproject.DTOs.TicketResponseDTO;
+import com.example.sdiproject.DTOs.TicketUpdateRequestDTO;
 import com.example.sdiproject.entities.Ticket;
 import com.example.sdiproject.entities.User;
 import com.example.sdiproject.mappers.TicketResponseDTOMapper;
@@ -11,6 +12,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,17 +68,17 @@ public class TicketService {
         return ticketResponseDTOMapper.apply(ticket);
     }
 
-    public void updateTicket(Ticket ticket) {
-        Ticket existingTicket = ticketRepository.findById(ticket.getId()).orElse(null);
+    public void updateTicket(TicketUpdateRequestDTO ticket) {
+        Ticket existingTicket = ticketRepository.findById(ticket.ticketId()).orElse(null);
         if (existingTicket == null) {
-            throw new IllegalArgumentException("Ticket with ID " + ticket.getId() + " not found");
+            throw new IllegalArgumentException("Ticket with ID " + ticket.ticketId() + " not found");
         }
-        existingTicket.setEventName(ticket.getEventName());
-        existingTicket.setEventDate(ticket.getEventDate());
-        existingTicket.setPurchaseDate(ticket.getPurchaseDate());
-        existingTicket.setTicketPriorityLevel(ticket.getTicketPriorityLevel());
-        existingTicket.setType(ticket.getType());
-        existingTicket.setAttendees(ticket.getAttendees());
+        existingTicket.setEventName(ticket.eventName());
+        existingTicket.setEventDate(ticket.eventDate());
+        existingTicket.setPurchaseDate(ticket.purchaseDate());
+        existingTicket.setTicketPriorityLevel(ticket.ticketPriorityLevel());
+        existingTicket.setType(ticket.type());
+        userRepository.findById(ticket.userId()).ifPresent(existingTicket::setUser);
         ticketRepository.save(existingTicket);
     }
 

@@ -31,7 +31,7 @@ public class Ticket {
     @Column(name = "TICKET_PRIORITY_LEVEl")
     private int ticketPriorityLevel;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

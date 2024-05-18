@@ -14,9 +14,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationResponse {
     private String token;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    private int userId;
 }
