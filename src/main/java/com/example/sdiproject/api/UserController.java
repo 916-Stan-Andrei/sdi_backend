@@ -49,15 +49,5 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable int id){
-        try {
-            UserResponseDTO user = userService.getUserById(id);
-            return ResponseEntity.ok(user);
-        }catch(IllegalArgumentException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-    }
     
 }
